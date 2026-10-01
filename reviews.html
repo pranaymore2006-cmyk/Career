@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Reviews — Career Explorer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        :root {
+            --primary: #6C5CE7; --accent: #FF7675; --green: #00B894;
+            --orange: #FDCB6E; --bg: #F8F9FD; --card: #FFFFFF;
+            --text: #2D3436; --text-light: #636E72; --border: #E8ECF3;
+            --shadow: 0 4px 20px rgba(108, 92, 231, 0.08);
+        }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; }
+
+        /* ---------- Shared Navbar ---------- */
+        .navbar { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .nav-brand { font-size: 1.2rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+        .nav-link { padding: 8px 16px; border-radius: 8px; text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.88rem; }
+        .nav-link:hover { background: var(--bg); color: var(--primary); }
+        .nav-link.active { background: rgba(108, 92, 231, 0.1); color: var(--primary); }
+        .nav-user { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-light); }
+        .nav-user strong { color: var(--primary); }
+        .nav-logout { padding: 8px 14px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.82rem; }
+        .nav-login { padding: 8px 16px; background: var(--primary); color: white; border-radius: 8px; font-weight: 600; font-size: 0.85rem; text-decoration: none; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
+        .page-title { margin-bottom: 25px; }
+        .page-title h1 { font-size: 1.6rem; margin-bottom: 4px; }
+        .page-title p { color: var(--text-light); font-size: 0.9rem; }
+
+        /* ---------- Stats Bar ---------- */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .stat-item {
+            background: var(--card); border-radius: 12px;
+            padding: 16px; text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .stat-item .value {
+            font-size: 1.5rem; font-weight: 800; color: var(--primary);
+        }
+        .stat-item .label {
+            font-size: 0.78rem; color: var(--text-light); font-weight: 600;
+        }
+
+        /* ---------- Review Form ---------- */
+        .review-form-card { background: var(--card); border-radius: 16px; padding: 25px; box-shadow: var(--shadow); margin-bottom: 30px; }
+        .review-form-card h2 { font-size: 1.2rem; margin-bottom: 20px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+        .form-group select, .form-group textarea, .form-group input {
+            width: 100%; padding: 12px 16px; border: 2px solid var(--border);
+            border-radius: 10px; font-size: 0.95rem; outline: none; font-family: inherit;
+        }
+        .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+
+        .star-rating { display: flex; gap: 5px; font-size: 1.8rem; cursor: pointer; }
+        .star-rating span { transition: transform 0.15s; }
+        .star-rating span:hover { transform: scale(1.2); }
+        .star-rating span.active { color: var(--orange); }
+        .star-rating span:not(.active) { color: #DDD; }
+
+        .btn-submit {
+            width: 100%; padding: 14px; background: var(--primary); color: white;
+            border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer;
+        }
+        .btn-submit:hover { background: #5A4BD1; }
+
+        .message { padding: 12px; border-radius: 10px; margin-bottom: 15px; font-size: 0.9rem; display: none; }
+        .message.success { background: rgba(0, 184, 148, 0.12); color: var(--green); display: block; }
+        .message.error { background: rgba(255, 118, 117, 0.12); color: var(--accent); display: block; }
+
+        .login-prompt {
+            background: var(--card); border-radius: 16px; padding: 25px;
+            box-shadow: var(--shadow); margin-bottom: 30px; text-align: center;
+        }
+        .login-prompt p { color: var(--text-light); margin-bottom: 15px; }
+        .login-prompt a { color: var(--primary); font-weight: 700; text-decoration: none; }
+
+        /* ---------- Review Cards ---------- */
+        .reviews-section h2 { font-size: 1.2rem; margin-bottom: 20px; }
+
+        .review-card {
+            background: var(--card); border-radius: 16px;
+            box-shadow: var(--shadow); margin-bottom: 18px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .review-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.15);
+        }
+
+        /* Career header strip inside each review */
+        .review-career-strip {
+            display: flex; align-items: center; gap: 14px;
+            padding: 16px 22px;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.06) 0%, rgba(142, 124, 255, 0.1) 100%);
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+        .review-career-strip:hover { background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(142, 124, 255, 0.15) 100%); }
+        .career-strip-icon { font-size: 2rem; flex-shrink: 0; }
+        .career-strip-info { flex: 1; }
+        .career-strip-name { font-weight: 800; font-size: 1rem; color: var(--text); }
+        .career-strip-meta { font-size: 0.78rem; color: var(--text-light); margin-top: 2px; }
+        .career-strip-view {
+            font-size: 0.78rem; font-weight: 700; color: var(--primary);
+            padding: 6px 12px; border-radius: 20px;
+            background: white; border: 1.5px solid var(--primary);
+            white-space: nowrap;
+        }
+        .review-career-strip:hover .career-strip-view {
+            background: var(--primary); color: white;
+        }
+
+        /* Review body */
+        .review-body { padding: 20px 22px; }
+        .review-header {
+            display: flex; justify-content: space-between;
+            align-items: flex-start; margin-bottom: 12px;
+            flex-wrap: wrap; gap: 10px;
+        }
+        .reviewer-info { display: flex; align-items: center; gap: 12px; }
+        .avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #8E7CFF);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 1rem;
+        }
+        .reviewer-name { font-weight: 700; font-size: 0.95rem; }
+        .reviewer-school { font-size: 0.8rem; color: var(--text-light); }
+        .review-meta { text-align: right; }
+        .review-stars { color: var(--orange); font-size: 1rem; }
+        .review-helpfulness {
+            font-size: 0.72rem; font-weight: 700;
+            padding: 3px 10px; border-radius: 12px;
+            display: inline-block; margin-top: 6px;
+        }
+        .help-high { background: rgba(0, 184, 148, 0.12); color: var(--green); }
+        .help-mid { background: rgba(253, 203, 110, 0.2); color: #E17055; }
+        .help-low { background: rgba(255, 118, 117, 0.12); color: var(--accent); }
+
+        .review-text { font-size: 0.95rem; line-height: 1.6; margin-top: 10px; }
+        .review-date { font-size: 0.78rem; color: var(--text-light); margin-top: 12px; }
+
+        /* Career detail popup (reuses modal style) */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(45, 52, 54, 0.6);
+            display: none; align-items: center; justify-content: center;
+            padding: 20px; z-index: 100; backdrop-filter: blur(4px);
+        }
+        .modal-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal {
+            background: white; border-radius: 20px; max-width: 600px; width: 100%;
+            max-height: 90vh; overflow-y: auto; padding: 30px;
+            position: relative; animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px;
+            background: var(--bg); border: none; width: 36px; height: 36px;
+            border-radius: 50%; font-size: 1.1rem; cursor: pointer;
+            color: var(--text-light);
+        }
+        .modal-close:hover { background: var(--border); }
+        .modal-icon { font-size: 3rem; margin-bottom: 10px; }
+        .modal h2 { font-size: 1.6rem; margin-bottom: 6px; }
+        .modal-category {
+            display: inline-block; font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; color: var(--primary);
+            background: rgba(108, 92, 231, 0.1); padding: 4px 12px;
+            border-radius: 20px; margin-bottom: 16px;
+        }
+        .modal-section { margin-top: 18px; }
+        .modal-section h4 {
+            font-size: 0.85rem; text-transform: uppercase;
+            letter-spacing: 0.5px; color: var(--text-light); margin-bottom: 6px;
+        }
+        .modal-section p { font-size: 0.95rem; }
+        .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .tag {
+            font-size: 0.72rem; background: var(--bg); color: var(--text-light);
+            padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border);
+        }
+
+        @media (max-width: 600px) {
+            .review-header { flex-direction: column; }
+            .review-meta { text-align: left; }
+            .review-career-strip { flex-wrap: wrap; }
+            .career-strip-view { margin-left: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Shared navbar -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">🎓 Career Explorer</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Careers</a>
+                <a href="/streams" class="nav-link">Streams</a>
+                <a href="/scholarships" class="nav-link">Scholarships</a>
+                <a href="/reviews" class="nav-link active">Reviews</a>
+                <a href="/dashboard" class="nav-link" id="adminLink" style="display:none;">Dashboard</a>
+            </div>
+            <div class="nav-user" id="navUser"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-title">
+            <h1>💬 Community Reviews</h1>
+            <p>See what other students think about each career — and share your own experience</p>
+        </div>
+
+        <!-- Stats bar -->
+        <div class="stats-bar" id="statsBar">
+            <div class="stat-item">
+                <div class="value" id="statTotalReviews">-</div>
+                <div class="label">Total Reviews</div>
+            </div>
+            <div class="stat-item">
+                <div class="value" id="statAvgRating">-</div>
+                <div class="label">Avg. Rating</div>
+            </div>
+            <div class="stat-item">
+                <div class="value" id="statTopCareer">-</div>
+                <div class="label">Most Reviewed</div>
+            </div>
+            <div class="stat-item">
+                <div class="value" id="statContributors">-</div>
+                <div class="label">Contributors</div>
+            </div>
+        </div>
+
+        <!-- Login prompt -->
+        <div class="login-prompt" id="loginPrompt" style="display:none;">
+            <p>Please log in to share your review and connect with other students.</p>
+            <a href="/login">→ Go to Login</a>
+        </div>
+
+        <!-- Review form -->
+        <div class="review-form-card" id="reviewFormCard" style="display:none;">
+            <h2>✍️ Share Your Experience</h2>
+            <div id="formMessage" class="message"></div>
+
+            <form onsubmit="submitReview(event)">
+                <div class="form-group">
+                    <label>Which career are you reviewing?</label>
+                    <select id="careerSelect" required>
+                        <option value="">-- Select a career --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>How helpful was this career card?</label>
+                    <div class="star-rating" id="starRating">
+                        <span onclick="setRating(1)">★</span>
+                        <span onclick="setRating(2)">★</span>
+                        <span onclick="setRating(3)">★</span>
+                        <span onclick="setRating(4)">★</span>
+                        <span onclick="setRating(5)">★</span>
+                    </div>
+                    <input type="hidden" id="ratingValue" value="0">
+                </div>
+                <div class="form-group">
+                    <label>Your feedback / suggestions</label>
+                    <textarea id="reviewText" required placeholder="Share what helped you, what could be improved, or any issues you faced..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Post Review</button>
+            </form>
+        </div>
+
+        <!-- Reviews list -->
+        <div class="reviews-section">
+            <h2>📝 What Students Are Saying</h2>
+            <div id="reviewsList">
+                <p style="color:#999; text-align:center;">Loading reviews...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Career detail modal (reused from index) -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalContent"></div>
+    </div>
+
+    <script>
+        // ============================================================
+        // AUTH + NAVBAR
+        // ============================================================
+        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        const navUser = document.getElementById('navUser');
+        const adminLink = document.getElementById('adminLink');
+        let selectedRating = 0;
+
+        if (currentUser.id) {
+            navUser.innerHTML = `
+                <span>Hi, <strong>${currentUser.name}</strong></span>
+                <button class="nav-logout" onclick="logout()">Logout</button>
+            `;
+            if (currentUser.role === 'admin') adminLink.style.display = 'inline-block';
+        } else {
+            navUser.innerHTML = `<a href="/login" class="nav-login">Login / Register</a>`;
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = '/login';
+        }
+
+        // Show form only for logged-in students
+        if (currentUser.id && currentUser.role === 'student') {
+            document.getElementById('reviewFormCard').style.display = 'block';
+        } else if (!currentUser.id) {
+            document.getElementById('loginPrompt').style.display = 'block';
+        }
+
+        // ============================================================
+        // CAREER DATA CACHE
+        // ============================================================
+        let allCareers = [];
+
+        async function loadCareers() {
+            try {
+                const res = await fetch('/api/careers');
+                const { careers } = await res.json();
+                allCareers = careers;
+
+                // Populate the review form's career dropdown
+                const select = document.getElementById('careerSelect');
+                careers.forEach(c => {
+                    const option = document.createElement('option');
+                    option.value = c.id;
+                    option.textContent = `${c.icon} ${c.name}`;
+                    option.dataset.name = c.name;
+                    select.appendChild(option);
+                });
+            } catch (error) { console.error(error); }
+        }
+
+        // Helper: find a career by ID from the cache
+        function getCareerById(id) {
+            return allCareers.find(c => c.id === id);
+        }
+
+        // ============================================================
+        // REVIEW FORM
+        // ============================================================
+        function setRating(rating) {
+            selectedRating = rating;
+            document.getElementById('ratingValue').value = rating;
+            document.querySelectorAll('#starRating span').forEach((star, i) => {
+                star.classList.toggle('active', i < rating);
+            });
+        }
+
+        function showFormMessage(text, type) {
+            const msg = document.getElementById('formMessage');
+            msg.textContent = text;
+            msg.className = 'message ' + type;
+            setTimeout(() => { msg.className = 'message'; }, 3000);
+        }
+
+        async function submitReview(event) {
+            event.preventDefault();
+            const careerSelect = document.getElementById('careerSelect');
+            const careerId = parseInt(careerSelect.value);
+            const careerName = careerSelect.options[careerSelect.selectedIndex].dataset.name;
+            const comment = document.getElementById('reviewText').value.trim();
+
+            if (selectedRating === 0) { showFormMessage('Please select a star rating.', 'error'); return; }
+            if (!careerId || !comment) { showFormMessage('Please fill in all fields.', 'error'); return; }
+
+            try {
+                const res = await fetch('/api/reviews', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userId: currentUser.id,
+                        userName: currentUser.name,
+                        careerId, careerName,
+                        rating: selectedRating,
+                        comment
+                    })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showFormMessage('Review posted successfully!', 'success');
+                    document.getElementById('reviewText').value = '';
+                    setRating(0);
+                    careerSelect.value = '';
+                    loadReviews(); // refresh list
+                }
+            } catch (error) {
+                showFormMessage('Error posting review.', 'error');
+            }
+        }
+
+        // ============================================================
+        // REVIEWS LIST + STATS
+        // ============================================================
+        async function loadReviews() {
+            try {
+                const res = await fetch('/api/reviews');
+                const { reviews } = await res.json();
+
+                // ---- Update stats bar ----
+                updateStats(reviews);
+
+                const list = document.getElementById('reviewsList');
+
+                if (reviews.length === 0) {
+                    list.innerHTML = '<p style="color:#999; text-align:center;">No reviews yet. Be the first to share!</p>';
+                    return;
+                }
+
+                // ---- Render each review as a rich card ----
+                list.innerHTML = reviews.slice().reverse().map(r => {
+
+                    // Look up the career details from cache
+                    const career = getCareerById(r.careerId);
+
+                    // If the career was deleted or not found, show a fallback
+                    const careerIcon = career ? career.icon : '📌';
+                    const careerName = career ? career.name : r.careerName;
+                    const careerCategory = career ? career.category : 'Career';
+                    const careerSalary = career ? career.salary : 'N/A';
+
+                    // Choose helpfulness badge colour based on rating
+                    let helpClass = 'help-low';
+                    let helpText = 'Not Helpful';
+                    if (r.rating >= 4) { helpClass = 'help-high'; helpText = 'Very Helpful'; }
+                    else if (r.rating === 3) { helpClass = 'help-mid'; helpText = 'Somewhat Helpful'; }
+
+                    // Initials for the avatar
+                    const initials = r.userName.split(' ').map(n => n[0]).join('').toUpperCase();
+
+                    return `
+                        <div class="review-card">
+                            <!-- Career info strip (clickable) -->
+                            <div class="review-career-strip" onclick="openCareerModal(${r.careerId})">
+                                <div class="career-strip-icon">${careerIcon}</div>
+                                <div class="career-strip-info">
+                                    <div class="career-strip-name">${careerName}</div>
+                                    <div class="career-strip-meta">${careerCategory} • ${careerSalary}</div>
+                                </div>
+                                <div class="career-strip-view">View Career →</div>
+                            </div>
+
+                            <!-- Review body -->
+                            <div class="review-body">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="avatar">${initials}</div>
+                                        <div>
+                                            <div class="reviewer-name">${r.userName}</div>
+                                            <div class="reviewer-school">Student</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-meta">
+                                        <div class="review-stars">${'⭐'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+                                        <div class="review-helpfulness ${helpClass}">${helpText}</div>
+                                    </div>
+                                </div>
+                                <p class="review-text">"${r.comment}"</p>
+                                <p class="review-date">Posted on ${r.date}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error(error);
+                document.getElementById('reviewsList').innerHTML =
+                    '<p style="color:#999; text-align:center;">Error loading reviews.</p>';
+            }
+        }
+
+        // Calculate and display stats at the top
+        function updateStats(reviews) {
+            const total = reviews.length;
+
+            // Average rating
+            const avg = total > 0
+                ? (reviews.reduce((sum, r) => sum + r.rating, 0) / total).toFixed(1)
+                : '0.0';
+
+            // Most reviewed career
+            const counts = {};
+            reviews.forEach(r => {
+                counts[r.careerName] = (counts[r.careerName] || 0) + 1;
+            });
+            let topCareer = '—';
+            let topCount = 0;
+            for (const name in counts) {
+                if (counts[name] > topCount) { topCount = counts[name]; topCareer = name; }
+            }
+
+            // Unique contributors
+            const contributors = new Set(reviews.map(r => r.userName)).size;
+
+            document.getElementById('statTotalReviews').textContent = total;
+            document.getElementById('statAvgRating').textContent = avg + ' ⭐';
+            document.getElementById('statTopCareer').textContent = topCareer;
+            document.getElementById('statContributors').textContent = contributors;
+        }
+
+        // ============================================================
+        // CAREER DETAIL MODAL (reused from index.html)
+        // ============================================================
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalContent = document.getElementById('modalContent');
+
+        function openCareerModal(careerId) {
+            const career = getCareerById(careerId);
+            if (!career) {
+                // If career not found in cache, try fetching it
+                fetch('/api/careers').then(r => r.json()).then(({ careers }) => {
+                    allCareers = careers;
+                    const found = getCareerById(careerId);
+                    if (found) showCareerModal(found);
+                });
+                return;
+            }
+            showCareerModal(career);
+        }
+
+        function showCareerModal(career) {
+            modalContent.innerHTML = `
+                <button class="modal-close" onclick="closeModal()">✕</button>
+                <div class="modal-icon">${career.icon}</div>
+                <h2>${career.name}</h2>
+                <div class="modal-category">${career.category}</div>
+
+                <div class="modal-section">
+                    <h4>About</h4>
+                    <p>${career.description}</p>
+                </div>
+                <div class="modal-section">
+                    <h4>Salary Range</h4>
+                    <p>${career.salary}</p>
+                </div>
+                <div class="modal-section">
+                    <h4>Education Path</h4>
+                    <p>${career.education}</p>
+                </div>
+                <div class="modal-section">
+                    <h4>Skills & Interests</h4>
+                    <div class="modal-tags">
+                        ${career.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            modalOverlay.classList.add('show');
+        }
+
+        function closeModal() { modalOverlay.classList.remove('show'); }
+        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        (async () => {
+            await loadCareers();
+            loadReviews();
+        })();
+    </script>
+</body>
+</html>

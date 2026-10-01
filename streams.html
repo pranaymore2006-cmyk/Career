@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11th & 12th Stream Guide — Career Explorer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        :root {
+            --primary: #6C5CE7; --accent: #FF7675; --green: #00B894;
+            --orange: #FDCB6E; --bg: #F8F9FD; --card: #FFFFFF;
+            --text: #2D3436; --text-light: #636E72; --border: #E8ECF3;
+            --shadow: 0 4px 20px rgba(108, 92, 231, 0.08);
+        }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; }
+
+        /* ---------- Shared Navbar ---------- */
+        .navbar { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .nav-brand { font-size: 1.2rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+        .nav-link { padding: 8px 16px; border-radius: 8px; text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.88rem; }
+        .nav-link:hover { background: var(--bg); color: var(--primary); }
+        .nav-link.active { background: rgba(108, 92, 231, 0.1); color: var(--primary); }
+        .nav-user { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-light); }
+        .nav-user strong { color: var(--primary); }
+        .nav-logout { padding: 8px 14px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.82rem; }
+        .nav-login { padding: 8px 16px; background: var(--primary); color: white; border-radius: 8px; font-weight: 600; font-size: 0.85rem; text-decoration: none; }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #8E7CFF 100%);
+            color: white; padding: 45px 20px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .hero::after {
+            content: '📚'; position: absolute; font-size: 9rem;
+            right: -10px; bottom: -30px; opacity: 0.12;
+        }
+        .hero h1 { font-size: 2rem; margin-bottom: 10px; position: relative; z-index: 1; }
+        .hero p { font-size: 1rem; opacity: 0.92; max-width: 650px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 35px 20px; }
+
+        /* ---------- Intro Box ---------- */
+        .intro {
+            background: var(--card); border-radius: 16px; padding: 22px 26px;
+            box-shadow: var(--shadow); margin-bottom: 30px;
+            border-left: 5px solid var(--primary);
+        }
+        .intro h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--primary); }
+        .intro p { font-size: 0.92rem; color: var(--text-light); line-height: 1.6; }
+
+        /* ---------- Stream Grid ---------- */
+        .stream-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 22px;
+        }
+
+        .stream-card {
+            background: var(--card); border-radius: 18px;
+            padding: 26px; box-shadow: var(--shadow);
+            transition: transform 0.25s, box-shadow 0.25s;
+            border-top: 5px solid var(--primary);
+            position: relative;
+        }
+        .stream-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 35px rgba(108, 92, 231, 0.18);
+        }
+        .stream-card.pcm { border-top-color: #6C5CE7; }
+        .stream-card.pcb { border-top-color: #00B894; }
+        .stream-card.commerce { border-top-color: #FDCB6E; }
+        .stream-card.arts { border-top-color: #FF7675; }
+        .stream-card.vocational { border-top-color: #0984E3; }
+
+        .stream-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .stream-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 6px; }
+        .stream-subtitle {
+            font-size: 0.8rem; color: var(--text-light);
+            font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 14px;
+        }
+
+        .stream-section { margin-bottom: 14px; }
+        .stream-section h4 {
+            font-size: 0.78rem; text-transform: uppercase;
+            letter-spacing: 0.6px; color: var(--text-light);
+            margin-bottom: 6px; font-weight: 700;
+        }
+        .stream-section p, .stream-section ul {
+            font-size: 0.88rem; color: var(--text); line-height: 1.55;
+        }
+        .stream-section ul { list-style: none; padding: 0; }
+        .stream-section ul li {
+            padding: 4px 0 4px 20px;
+            position: relative;
+        }
+        .stream-section ul li::before {
+            content: '▸'; position: absolute; left: 0;
+            color: var(--primary); font-weight: 700;
+        }
+
+        .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .tag {
+            font-size: 0.72rem; background: var(--bg); color: var(--text-light);
+            padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border);
+        }
+
+        .stream-btn {
+            display: block; width: 100%; padding: 12px;
+            background: var(--primary); color: white;
+            border: none; border-radius: 10px;
+            font-size: 0.9rem; font-weight: 700;
+            text-align: center; text-decoration: none;
+            margin-top: 18px; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .stream-btn:hover { background: #5A4BD1; }
+
+        /* ---------- Comparison Table ---------- */
+        .compare-section {
+            margin-top: 40px;
+            background: var(--card); border-radius: 16px;
+            padding: 26px; box-shadow: var(--shadow);
+        }
+        .compare-section h3 { font-size: 1.15rem; margin-bottom: 18px; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        th {
+            text-align: left; padding: 12px;
+            background: var(--bg); color: var(--text-light);
+            font-size: 0.78rem; text-transform: uppercase;
+            font-weight: 700; letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--border);
+        }
+        td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+        tr:hover td { background: #FAFBFF; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.5rem; }
+            .hero p { font-size: 0.9rem; }
+            .stream-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SHARED NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">🎓 Career Explorer</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Careers</a>
+                <a href="/streams" class="nav-link active">Streams</a>
+                <a href="/scholarships" class="nav-link">Scholarships</a>
+                <a href="/reviews" class="nav-link">Reviews</a>
+                <a href="/dashboard" class="nav-link" id="adminLink" style="display:none;">Dashboard</a>
+            </div>
+            <div class="nav-user" id="navUser"></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <h1>📚 11th & 12th Stream Guide</h1>
+        <p>Confused about which stream to pick after Class 10? Explore each option and see where it can take you.</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Intro -->
+        <div class="intro">
+            <h3>💡 How to Use This Page</h3>
+            <p>After Class 10, your stream choice shapes which careers are easier to enter. Read each card below, look at the careers it leads to, and click "Explore Careers →" to see matching careers on the main Career Explorer page. Remember: <strong>no stream is "better" than another</strong> — it depends on what you enjoy and what you're good at.</p>
+        </div>
+
+        <!-- Stream cards -->
+        <div class="stream-grid" id="streamGrid">
+
+            <!-- PCM -->
+            <div class="stream-card pcm">
+                <div class="stream-icon">🔬</div>
+                <div class="stream-title">Science — PCM</div>
+                <div class="stream-subtitle">Physics • Chemistry • Maths</div>
+
+                <div class="stream-section">
+                    <h4>What You'll Study</h4>
+                    <p>Physics, Chemistry, Mathematics, and often Computer Science or Biology as a 4th subject.</p>
+                </div>
+
+                <div class="stream-section">
+                    <h4>Careers It Leads To</h4>
+                    <ul>
+                        <li>Software Developer</li>
+                        <li>Civil Engineer</li>
+                        <li>Mechanical Engineer</li>
+                        <li>Data Analyst</li>
+                        <li>Architect</li>
+                        <li>Pilot</li>
+                        <li>Ethical Hacker</li>
+                    </ul>
+                </div>
+
+                <div class="stream-section">
+                    <h4>Best If You Like</h4>
+                    <div class="tag-list">
+                        <span class="tag">Maths</span>
+                        <span class="tag">Physics</span>
+                        <span class="tag">Problem Solving</span>
+                        <span class="tag">Technology</span>
+                    </div>
+                </div>
+
+                <a href="/?category=Tech" class="stream-btn">Explore Tech Careers →</a>
+            </div>
+
+            <!-- PCB -->
+            <div class="stream-card pcb">
+                <div class="stream-icon">🧬</div>
+                <div class="stream-title">Science — PCB</div>
+                <div class="stream-subtitle">Physics • Chemistry • Biology</div>
+
+                <div class="stream-section">
+                    <h4>What You'll Study</h4>
+                    <p>Physics, Chemistry, Biology, and often Psychology or Biotechnology as an elective.</p>
+                </div>
+
+                <div class="stream-section">
+                    <h4>Careers It Leads To</h4>
+                    <ul>
+                        <li>Doctor (MBBS / BDS)</li>
+                        <li>Nurse</li>
+                        <li>Pharmacist</li>
+                        <li>Physiotherapist</li>
+                        <li>Biotechnologist</li>
+                        <li>Lab Technician</li>
+                    </ul>
+                </div>
+
+                <div class="stream-section">
+                    <h4>Best If You Like</h4>
+                    <div class="tag-list">
+                        <span class="tag">Biology</span>
+                        <span class="tag">Helping People</span>
+                        <span class="tag">Science</span>
+                        <span class="tag">Healthcare</span>
+                    </div>
+                </div>
+
+                <a href="/?category=Healthcare" class="stream-btn">Explore Healthcare Careers →</a>
+            </div>
+
+            <!-- Commerce -->
+            <div class="stream-card commerce">
+                <div class="stream-icon">💼</div>
+                <div class="stream-title">Commerce</div>
+                <div class="stream-subtitle">Accounts • Business • Economics</div>
+
+                <div class="stream-section">
+                    <h4>What You'll Study</h4>
+                    <p>Accountancy, Business Studies, Economics, and often Maths or Informatics as an elective.</p>
+                </div>
+
+                <div class="stream-section">
+                    <h4>Careers It Leads To</h4>
+                    <ul>
+                        <li>Chartered Accountant</li>
+                        <li>Accountant</li>
+                        <li>Banker</li>
+                        <li>Marketing Manager</li>
+                        <li>Company Secretary</li>
+                        <li>Stock Broker</li>
+                        <li>Entrepreneur</li>
+                    </ul>
+                </div>
+
+                <div class="stream-section">
+                    <h4>Best If You Like</h4>
+                    <div class="tag-list">
+                        <span class="tag">Numbers</span>
+                        <span class="tag">Money</span>
+                        <span class="tag">Business</span>
+                        <span class="tag">Organising</span>
+                    </div>
+                </div>
+
+                <a href="/?category=Business" class="stream-btn">Explore Business Careers →</a>
+            </div>
+
+            <!-- Arts -->
+            <div class="stream-card arts">
+                <div class="stream-icon">🎨</div>
+                <div class="stream-title">Arts / Humanities</div>
+                <div class="stream-subtitle">History • Pol Sci • Psychology • Languages</div>
+
+                <div class="stream-section">
+                    <h4>What You'll Study</h4>
+                    <p>Choose from History, Political Science, Psychology, Sociology, Geography, Languages, and Fine Arts.</p>
+                </div>
+
+                <div class="stream-section">
+                    <h4>Careers It Leads To</h4>
+                    <ul>
+                        <li>Lawyer (BA LLB)</li>
+                        <li>Civil Servant (IAS / IPS)</li>
+                        <li>Journalist</li>
+                        <li>Psychologist</li>
+                        <li>Fashion Designer</li>
+                        <li>Graphic Designer</li>
+                        <li>Content Writer</li>
+                    </ul>
+                </div>
+
+                <div class="stream-section">
+                    <h4>Best If You Like</h4>
+                    <div class="tag-list">
+                        <span class="tag">Reading</span>
+                        <span class="tag">Writing</span>
+                        <span class="tag">Society</span>
+                        <span class="tag">Creativity</span>
+                    </div>
+                </div>
+
+                <a href="/?category=Creative" class="stream-btn">Explore Creative Careers →</a>
+            </div>
+
+            <!-- Vocational -->
+            <div class="stream-card vocational">
+                <div class="stream-icon">🔧</div>
+                <div class="stream-title">Vocational / ITI</div>
+                <div class="stream-subtitle">Skill-Based Training</div>
+
+                <div class="stream-section">
+                    <h4>What You'll Study</h4>
+                    <p>Hands-on training in trades like electrician, plumber, welding, IT support, or healthcare assistance.</p>
+                </div>
+
+                <div class="stream-section">
+                    <h4>Careers It Leads To</h4>
+                    <ul>
+                        <li>Electrician</li>
+                        <li>Plumber</li>
+                        <li>Welder</li>
+                        <li>Automobile Technician</li>
+                        <li>Carpenter</li>
+                        <li>Beautician</li>
+                        <li>IT Support Technician</li>
+                        <li>Chef</li>
+                    </ul>
+                </div>
+
+                <div class="stream-section">
+                    <h4>Best If You Like</h4>
+                    <div class="tag-list">
+                        <span class="tag">Hands-On</span>
+                        <span class="tag">Fixing Things</span>
+                        <span class="tag">Short Courses</span>
+                        <span class="tag">Early Earning</span>
+                    </div>
+                </div>
+
+                <a href="/?category=Trades" class="stream-btn">Explore Trade Careers →</a>
+            </div>
+
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="compare-section">
+            <h3>📊 Quick Comparison</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stream</th>
+                            <th>Main Subjects</th>
+                            <th>Best For</th>
+                            <th>Entrance Exams</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Science (PCM)</strong></td>
+                            <td>Physics, Chemistry, Maths</td>
+                            <td>Engineering, Tech, Defence</td>
+                            <td>JEE, NDA, BITSAT</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Science (PCB)</strong></td>
+                            <td>Physics, Chemistry, Biology</td>
+                            <td>Medicine, Nursing, Biotech</td>
+                            <td>NEET, AIIMS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Commerce</strong></td>
+                            <td>Accounts, Business, Eco</td>
+                            <td>CA, Banking, Management</td>
+                            <td>CA Foundation, IPMAT</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Arts / Humanities</strong></td>
+                            <td>History, Pol Sci, Psych</td>
+                            <td>Law, Civil Services, Media</td>
+                            <td>CLAT, UPSC, NID</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vocational / ITI</strong></td>
+                            <td>Trade-specific skills</td>
+                            <td>Skilled trades, Self-employment</td>
+                            <td>ITI Entrance (state-wise)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        // AUTH + NAVBAR
+        // ============================================================
+        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        const navUser = document.getElementById('navUser');
+        const adminLink = document.getElementById('adminLink');
+
+        if (currentUser.id) {
+            navUser.innerHTML = `
+                <span>Hi, <strong>${currentUser.name}</strong></span>
+                <button class="nav-logout" onclick="logout()">Logout</button>
+            `;
+            if (currentUser.role === 'admin') adminLink.style.display = 'inline-block';
+        } else {
+            navUser.innerHTML = `<a href="/login" class="nav-login">Login / Register</a>`;
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = '/login';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Career Explorer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        :root {
+            --primary: #6C5CE7; --primary-dark: #5A4BD1;
+            --accent: #FF7675; --green: #00B894;
+            --bg: #F8F9FD; --text: #2D3436;
+            --text-light: #636E72; --border: #E8ECF3;
+        }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; }
+
+        /* Shared navbar */
+        .navbar { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .nav-brand { font-size: 1.2rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+        .nav-link { padding: 8px 16px; border-radius: 8px; text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.88rem; }
+        .nav-link:hover { background: var(--bg); color: var(--primary); }
+        .nav-link.active { background: rgba(108, 92, 231, 0.1); color: var(--primary); }
+
+        /* Login wrapper */
+        .login-wrapper {
+            min-height: calc(100vh - 65px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        .login-container {
+            background: white; border-radius: 20px; padding: 40px;
+            width: 100%; max-width: 440px;
+            box-shadow: 0 20px 60px rgba(108, 92, 231, 0.15);
+        }
+        .logo { text-align: center; margin-bottom: 25px; }
+        .logo h1 { font-size: 1.6rem; margin-bottom: 6px; }
+        .logo p { color: var(--text-light); font-size: 0.9rem; }
+
+        .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+        .tab {
+            flex: 1; padding: 11px; border: 2px solid var(--border);
+            background: white; border-radius: 10px; cursor: pointer;
+            font-weight: 600; font-size: 0.88rem; color: var(--text-light);
+        }
+        .tab.active { background: var(--primary); border-color: var(--primary); color: white; }
+
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+        .form-group input {
+            width: 100%; padding: 12px 16px; border: 2px solid var(--border);
+            border-radius: 10px; font-size: 0.95rem; outline: none;
+        }
+        .form-group input:focus { border-color: var(--primary); }
+
+        .btn-login {
+            width: 100%; padding: 14px; background: var(--primary);
+            color: white; border: none; border-radius: 10px;
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+        }
+        .btn-login:hover { background: var(--primary-dark); }
+
+        .demo-box {
+            background: var(--bg); border-radius: 12px; padding: 16px;
+            margin-top: 22px; border: 1px dashed var(--border);
+        }
+        .demo-box h4 { font-size: 0.8rem; text-transform: uppercase; color: var(--text-light); margin-bottom: 10px; }
+        .demo-item {
+            font-size: 0.82rem; margin-bottom: 6px; padding: 8px 12px;
+            background: white; border-radius: 6px; cursor: pointer;
+        }
+        .demo-item:hover { background: #EEF0FB; }
+        .demo-item strong { color: var(--primary); }
+
+        .message { padding: 12px; border-radius: 10px; margin-bottom: 15px; font-size: 0.9rem; display: none; }
+        .message.error { background: rgba(255, 118, 117, 0.12); color: var(--accent); display: block; }
+        .message.success { background: rgba(0, 184, 148, 0.12); color: var(--green); display: block; }
+
+        .toggle-link {
+            text-align: center; margin-top: 16px; font-size: 0.88rem; color: var(--text-light);
+        }
+        .toggle-link a { color: var(--primary); font-weight: 700; text-decoration: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <!-- Shared navbar -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">🎓 Career Explorer</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Careers</a>
+                <a href="/streams" class="nav-link">Streams</a>
+                <a href="/scholarships" class="nav-link">Scholarships</a>
+                <a href="/reviews" class="nav-link">Reviews</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="logo">
+                <h1>🎓 Career Explorer</h1>
+                <p>Online Career Guidance Portal</p>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('student')">Student</button>
+                <button class="tab" onclick="switchTab('admin')">Admin</button>
+            </div>
+
+            <div id="message" class="message"></div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn-login" id="submitBtn">Sign In</button>
+            </form>
+
+            <!-- Register form (only for students) -->
+            <form id="registerForm" onsubmit="handleRegister(event)" style="display:none;">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" required placeholder="Create a password" minlength="6">
+                </div>
+                <div class="form-group">
+                    <label>School / College Name</label>
+                    <input type="text" id="regSchool" required placeholder="Enter your school name">
+                </div>
+                <button type="submit" class="btn-login">Create Account</button>
+            </form>
+
+            <div class="toggle-link" id="toggleLink">
+                New student? <a onclick="showRegister()">Create an account</a>
+            </div>
+
+            <div class="demo-box" id="demoBox">
+                <h4>Demo Accounts (Click to fill)</h4>
+                <div class="demo-item" onclick="fillDemo('admin@career.in', 'admin123')">
+                    <strong>Admin:</strong> admin@career.in / admin123
+                </div>
+                <div class="demo-item" onclick="fillDemo('priya@student.in', 'student123')">
+                    <strong>Student:</strong> priya@student.in / student123
+                </div>
+                <div class="demo-item" onclick="fillDemo('rahul@student.in', 'student123')">
+                    <strong>Student:</strong> rahul@student.in / student123
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentTab = 'student';
+        let isRegisterMode = false;
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab').forEach((t, i) => {
+                t.classList.toggle('active', (i === 0 && tab === 'student') || (i === 1 && tab === 'admin'));
+            });
+            // Reset to login mode when switching tabs
+            if (isRegisterMode) showLogin();
+            if (tab === 'admin') {
+                document.getElementById('email').value = 'admin@career.in';
+                document.getElementById('password').value = 'admin123';
+            } else {
+                document.getElementById('email').value = '';
+                document.getElementById('password').value = '';
+            }
+            hideMessage();
+        }
+
+        function fillDemo(email, password) {
+            if (isRegisterMode) showLogin();
+            if (email.includes('admin')) {
+                switchTab('admin');
+            } else {
+                switchTab('student');
+            }
+            document.getElementById('email').value = email;
+            document.getElementById('password').value = password;
+        }
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = 'message ' + type;
+        }
+
+        function hideMessage() {
+            document.getElementById('message').className = 'message';
+        }
+
+        function showRegister() {
+            isRegisterMode = true;
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('toggleLink').innerHTML =
+                'Already have an account? <a onclick="showLogin()">Sign in</a>';
+            document.getElementById('demoBox').style.display = 'none';
+            document.querySelector('.tabs').style.display = 'none';
+            hideMessage();
+        }
+
+        function showLogin() {
+            isRegisterMode = false;
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('toggleLink').innerHTML =
+                'New student? <a onclick="showRegister()">Create an account</a>';
+            document.getElementById('demoBox').style.display = 'block';
+            document.querySelector('.tabs').style.display = 'flex';
+            hideMessage();
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            hideMessage();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    localStorage.setItem('currentUser', JSON.stringify(data.user));
+                    showMessage('Login successful! Redirecting...', 'success');
+                    setTimeout(() => {
+                        if (data.user.role === 'admin') window.location.href = '/dashboard';
+                        else window.location.href = '/';
+                    }, 800);
+                } else {
+                    showMessage(data.message || 'Login failed.', 'error');
+                }
+            } catch (error) {
+                showMessage('Server error. Make sure server is running.', 'error');
+            }
+        }
+
+        async function handleRegister(event) {
+            event.preventDefault();
+            hideMessage();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const school = document.getElementById('regSchool').value.trim();
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password, school })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    localStorage.setItem('currentUser', JSON.stringify(data.user));
+                    showMessage('Account created! Redirecting...', 'success');
+                    setTimeout(() => { window.location.href = '/'; }, 800);
+                } else {
+                    showMessage(data.message || 'Registration failed.', 'error');
+                }
+            } catch (error) {
+                showMessage('Server error. Make sure server is running.', 'error');
+            }
+        }
+
+        // If already logged in, redirect
+        const existing = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        if (existing.id) {
+            window.location.href = existing.role === 'admin' ? '/dashboard' : '/';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "career-explorer",
+  "version": "1.0.0",
+  "description": "Online Career Guidance Portal for Underprivileged Students",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,723 @@
+{
+  "careers": [
+    {
+      "id": 1,
+      "name": "Software Developer",
+      "category": "Tech",
+      "icon": "💻",
+      "tags": ["Coding", "Problem Solving", "Math"],
+      "description": "Software developers design, build, and maintain computer programs and applications. They turn ideas into working software that people use every day.",
+      "salary": "₹4,00,000 – ₹12,00,000 per year",
+      "education": "Bachelor's degree in Computer Science, IT, or a related field. Online bootcamps also work.",
+      "quiz": [
+        { "question": "Do you enjoy solving puzzles or logical problems?", "answer": true },
+        { "question": "Are you comfortable spending long hours on a computer?", "answer": true },
+        { "question": "Do you like learning new tools and technologies?", "answer": true }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Nurse",
+      "category": "Healthcare",
+      "icon": "🏥",
+      "tags": ["Helping", "Biology", "Communication"],
+      "description": "Nurses care for patients, assist doctors, and provide emotional support to families. They are the backbone of any hospital or clinic.",
+      "salary": "₹2,50,000 – ₹7,00,000 per year",
+      "education": "B.Sc Nursing or GNM diploma. Must be registered with a nursing council.",
+      "quiz": [
+        { "question": "Do you stay calm in stressful situations?", "answer": true },
+        { "question": "Do you enjoy helping people directly?", "answer": true },
+        { "question": "Are you comfortable with blood or medical procedures?", "answer": true }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Graphic Designer",
+      "category": "Creative",
+      "icon": "🎨",
+      "tags": ["Drawing", "Creativity", "Software"],
+      "description": "Graphic designers create visual content for websites, ads, logos, and social media. They combine art and technology to communicate ideas.",
+      "salary": "₹2,00,000 – ₹8,00,000 per year",
+      "education": "Bachelor's in Design (B.Des) or a diploma in graphic design. A strong portfolio matters most.",
+      "quiz": [
+        { "question": "Do you enjoy drawing or visualising ideas?", "answer": true },
+        { "question": "Do you notice colours and layouts in everyday things?", "answer": true },
+        { "question": "Are you open to feedback on your creative work?", "answer": true }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Electrician",
+      "category": "Trades",
+      "icon": "⚡",
+      "tags": ["Fixing Things", "Hands-on", "Safety"],
+      "description": "Electricians install, maintain, and repair electrical wiring and equipment. It's a skilled trade with strong demand and self-employment potential.",
+      "salary": "₹1,80,000 – ₹5,00,000 per year",
+      "education": "ITI certificate in Electrician trade. Apprenticeship improves job prospects.",
+      "quiz": [
+        { "question": "Do you enjoy working with your hands?", "answer": true },
+        { "question": "Are you good at following safety rules?", "answer": true },
+        { "question": "Do you like fixing things when they break?", "answer": true }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Teacher",
+      "category": "Education",
+      "icon": "📚",
+      "tags": ["Teaching", "Communication", "Patience"],
+      "description": "Teachers educate students in schools and colleges. They plan lessons, explain concepts, and shape the next generation.",
+      "salary": "₹2,00,000 – ₹6,00,000 per year",
+      "education": "Bachelor's degree + B.Ed (Bachelor of Education). TET exam for government schools.",
+      "quiz": [
+        { "question": "Do you enjoy explaining things to others?", "answer": true },
+        { "question": "Do you have patience with people who learn slowly?", "answer": true },
+        { "question": "Do you like being around young people?", "answer": true }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Accountant",
+      "category": "Business",
+      "icon": "📊",
+      "tags": ["Math", "Organising", "Detail"],
+      "description": "Accountants manage financial records, prepare tax returns, and help businesses stay compliant. Attention to detail is key.",
+      "salary": "₹2,50,000 – ₹9,00,000 per year",
+      "education": "B.Com + CA or CMA. Even a basic accounting diploma can get you started.",
+      "quiz": [
+        { "question": "Are you good with numbers and calculations?", "answer": true },
+        { "question": "Do you pay attention to small details?", "answer": true },
+        { "question": "Do you like organising information systematically?", "answer": true }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Social Worker",
+      "category": "Social",
+      "icon": "🤝",
+      "tags": ["Helping", "Community", "Listening"],
+      "description": "Social workers help individuals and communities solve problems. They work in NGOs, government agencies, and hospitals.",
+      "salary": "₹1,80,000 – ₹5,00,000 per year",
+      "education": "Bachelor's in Social Work (BSW) or Master's (MSW).",
+      "quiz": [
+        { "question": "Do you feel strongly about social issues?", "answer": true },
+        { "question": "Are you a good listener?", "answer": true },
+        { "question": "Do you want to make a difference in your community?", "answer": true }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Data Analyst",
+      "category": "Tech",
+      "icon": "📈",
+      "tags": ["Data", "Math", "Excel"],
+      "description": "Data analysts collect, clean, and interpret data to help companies make decisions. It's one of the fastest-growing careers.",
+      "salary": "₹3,00,000 – ₹10,00,000 per year",
+      "education": "Bachelor's in Statistics, Math, or Computer Science. Certifications in Excel, SQL, and Python help.",
+      "quiz": [
+        { "question": "Do you enjoy finding patterns in information?", "answer": true },
+        { "question": "Are you comfortable with spreadsheets and charts?", "answer": true },
+        { "question": "Do you like proving a point with evidence?", "answer": true }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Chef",
+      "category": "Creative",
+      "icon": "🍳",
+      "tags": ["Cooking", "Creativity", "Hands-on"],
+      "description": "Chefs prepare food in restaurants, hotels, and catering services. Creativity and stamina are both important.",
+      "salary": "₹2,00,000 – ₹8,00,000 per year",
+      "education": "Diploma in Culinary Arts or hotel management. Apprenticeship in a kitchen is very valuable.",
+      "quiz": [
+        { "question": "Do you enjoy cooking and experimenting with food?", "answer": true },
+        { "question": "Can you work well under time pressure?", "answer": true },
+        { "question": "Do you like making people happy through what you create?", "answer": true }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Plumber",
+      "category": "Trades",
+      "icon": "🔧",
+      "tags": ["Fixing Things", "Hands-on", "Problem Solving"],
+      "description": "Plumbers install and repair water and drainage systems. It's a stable trade with the option to start your own business.",
+      "salary": "₹1,50,000 – ₹4,50,000 per year",
+      "education": "ITI certificate in Plumbing. On-the-job training is essential.",
+      "quiz": [
+        { "question": "Do you enjoy practical, hands-on work?", "answer": true },
+        { "question": "Are you good at diagnosing problems?", "answer": true },
+        { "question": "Are you willing to work in different locations?", "answer": true }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Content Writer",
+      "category": "Creative",
+      "icon": "✍️",
+      "tags": ["Writing", "Communication", "Creativity"],
+      "description": "Content writers create articles, blogs, and marketing copy for websites and brands. Good writers are always in demand.",
+      "salary": "₹1,80,000 – ₹6,00,000 per year",
+      "education": "Any bachelor's degree. A portfolio of published work matters more than the degree.",
+      "quiz": [
+        { "question": "Do you enjoy writing and expressing ideas in words?", "answer": true },
+        { "question": "Are you good at researching new topics?", "answer": true },
+        { "question": "Can you explain complex things simply?", "answer": true }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Entrepreneur",
+      "category": "Business",
+      "icon": "🚀",
+      "tags": ["Leadership", "Risk", "Business"],
+      "description": "Entrepreneurs start and run their own businesses. They identify problems, build solutions, and manage teams.",
+      "salary": "Highly variable — from losses to crores per year",
+      "education": "No specific degree required. Business courses and mentorship help.",
+      "quiz": [
+        { "question": "Do you enjoy taking calculated risks?", "answer": true },
+        { "question": "Are you comfortable being in charge?", "answer": true },
+        { "question": "Do you bounce back quickly from failure?", "answer": true }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Civil Engineer",
+      "category": "Tech",
+      "icon": "🏗️",
+      "tags": ["Math", "Physics", "Building"],
+      "description": "Civil engineers design and supervise construction of roads, bridges, buildings, and dams. They shape the physical world around us.",
+      "salary": "₹3,00,000 – ₹9,00,000 per year",
+      "education": "B.Tech / B.E. in Civil Engineering. GATE for M.Tech or PSU jobs.",
+      "quiz": [
+        { "question": "Do you enjoy designing or building things?", "answer": true },
+        { "question": "Are you comfortable with maths and physics?", "answer": true },
+        { "question": "Do you like working on large-scale projects?", "answer": true }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Mechanical Engineer",
+      "category": "Tech",
+      "icon": "⚙️",
+      "tags": ["Physics", "Machines", "Design"],
+      "description": "Mechanical engineers design, build, and test machines and mechanical systems. They work in automotive, aerospace, and manufacturing.",
+      "salary": "₹3,00,000 – ₹10,00,000 per year",
+      "education": "B.Tech / B.E. in Mechanical Engineering. GATE for higher studies.",
+      "quiz": [
+        { "question": "Are you fascinated by machines and engines?", "answer": true },
+        { "question": "Do you enjoy hands-on problem solving?", "answer": true },
+        { "question": "Are you comfortable with physics and mechanics?", "answer": true }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Architect",
+      "category": "Creative",
+      "icon": "🏛️",
+      "tags": ["Design", "Math", "Drawing"],
+      "description": "Architects design buildings and spaces that are functional, safe, and beautiful. They blend art with engineering.",
+      "salary": "₹3,00,000 – ₹10,00,000 per year",
+      "education": "B.Arch (5-year degree). NATA or JEE Paper 2 entrance exam.",
+      "quiz": [
+        { "question": "Do you enjoy drawing and designing spaces?", "answer": true },
+        { "question": "Are you good at visualising 3D objects?", "answer": true },
+        { "question": "Do you balance creativity with practical constraints?", "answer": true }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Pilot",
+      "category": "Tech",
+      "icon": "✈️",
+      "tags": ["Physics", "Focus", "Travel"],
+      "description": "Pilots fly commercial aircraft, cargo planes, or private jets. It's a high-responsibility career with excellent pay.",
+      "salary": "₹8,00,000 – ₹50,00,000 per year",
+      "education": "10+2 with Physics & Maths, then CPL (Commercial Pilot License) training.",
+      "quiz": [
+        { "question": "Are you comfortable with high responsibility?", "answer": true },
+        { "question": "Do you have strong focus and quick reflexes?", "answer": true },
+        { "question": "Are you okay with frequent travel?", "answer": true }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Ethical Hacker",
+      "category": "Tech",
+      "icon": "🛡️",
+      "tags": ["Coding", "Security", "Problem Solving"],
+      "description": "Ethical hackers test systems for security flaws to help companies protect their data from real attackers.",
+      "salary": "₹4,00,000 – ₹15,00,000 per year",
+      "education": "B.Tech in CS/IT or certifications like CEH, OSCP.",
+      "quiz": [
+        { "question": "Are you curious about how systems work?", "answer": true },
+        { "question": "Do you enjoy finding weaknesses in puzzles?", "answer": true },
+        { "question": "Do you want to protect people from cybercrime?", "answer": true }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Doctor",
+      "category": "Healthcare",
+      "icon": "🩺",
+      "tags": ["Biology", "Helping", "Science"],
+      "description": "Doctors diagnose and treat illnesses. It's one of the most respected careers, requiring years of study and dedication.",
+      "salary": "₹6,00,000 – ₹25,00,000 per year",
+      "education": "MBBS (5.5 years) after NEET. Specialisation via MD/MS.",
+      "quiz": [
+        { "question": "Do you want to help people heal?", "answer": true },
+        { "question": "Can you handle long hours of study and work?", "answer": true },
+        { "question": "Do you stay calm in emergencies?", "answer": true }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Pharmacist",
+      "category": "Healthcare",
+      "icon": "💊",
+      "tags": ["Chemistry", "Biology", "Detail"],
+      "description": "Pharmacists prepare and dispense medicines, advise patients, and ensure drug safety. They work in hospitals, pharmacies, and pharma companies.",
+      "salary": "₹2,50,000 – ₹7,00,000 per year",
+      "education": "B.Pharm (4 years) or D.Pharm (2 years). GPAT for M.Pharm.",
+      "quiz": [
+        { "question": "Are you good with chemistry and biology?", "answer": true },
+        { "question": "Do you pay attention to detail?", "answer": true },
+        { "question": "Do you enjoy helping people with their health?", "answer": true }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Physiotherapist",
+      "category": "Healthcare",
+      "icon": "💪",
+      "tags": ["Biology", "Helping", "Hands-on"],
+      "description": "Physiotherapists help patients recover from injuries and surgeries through exercise and manual therapy.",
+      "salary": "₹2,50,000 – ₹8,00,000 per year",
+      "education": "BPT (Bachelor of Physiotherapy, 4.5 years).",
+      "quiz": [
+        { "question": "Do you enjoy working directly with people?", "answer": true },
+        { "question": "Are you interested in how the body moves?", "answer": true },
+        { "question": "Are you patient with slow recovery processes?", "answer": true }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Biotechnologist",
+      "category": "Healthcare",
+      "icon": "🧪",
+      "tags": ["Biology", "Chemistry", "Research"],
+      "description": "Biotechnologists use living cells to develop medicines, vaccines, and environmentally friendly products.",
+      "salary": "₹3,00,000 – ₹9,00,000 per year",
+      "education": "B.Tech / B.Sc in Biotechnology. M.Sc or Ph.D. for research roles.",
+      "quiz": [
+        { "question": "Do you enjoy lab work and experiments?", "answer": true },
+        { "question": "Are you curious about how living things work?", "answer": true },
+        { "question": "Do you want to solve health or environmental problems?", "answer": true }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Lab Technician",
+      "category": "Healthcare",
+      "icon": "🔬",
+      "tags": ["Biology", "Detail", "Hands-on"],
+      "description": "Lab technicians perform medical tests that help doctors diagnose diseases. They work in hospitals and diagnostic labs.",
+      "salary": "₹2,00,000 – ₹5,00,000 per year",
+      "education": "DMLT (Diploma in Medical Lab Technology) or B.Sc MLT.",
+      "quiz": [
+        { "question": "Do you enjoy working in a lab?", "answer": true },
+        { "question": "Are you careful with procedures?", "answer": true },
+        { "question": "Do you want to be part of a medical team?", "answer": true }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Chartered Accountant",
+      "category": "Business",
+      "icon": "🧾",
+      "tags": ["Math", "Detail", "Money"],
+      "description": "Chartered Accountants audit finances, file taxes, and advise businesses on money matters. It's a prestigious, high-paying career.",
+      "salary": "₹7,00,000 – ₹25,00,000 per year",
+      "education": "CA Foundation → Intermediate → Final. Practical training required.",
+      "quiz": [
+        { "question": "Are you excellent with numbers?", "answer": true },
+        { "question": "Do you enjoy solving financial problems?", "answer": true },
+        { "question": "Are you willing to study hard for years?", "answer": true }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Banker",
+      "category": "Business",
+      "icon": "🏦",
+      "tags": ["Money", "Communication", "Detail"],
+      "description": "Bankers handle customer accounts, loans, and investments. Government bank jobs offer security and good benefits.",
+      "salary": "₹3,00,000 – ₹10,00,000 per year",
+      "education": "Any bachelor's degree. IBPS PO, SBI PO, or RBI exams for government banks.",
+      "quiz": [
+        { "question": "Do you enjoy working with money and numbers?", "answer": true },
+        { "question": "Are you comfortable talking to customers?", "answer": true },
+        { "question": "Do you want a stable government job?", "answer": true }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Marketing Manager",
+      "category": "Business",
+      "icon": "📣",
+      "tags": ["Communication", "Creativity", "Business"],
+      "description": "Marketing managers plan campaigns to promote products and build brands. They combine creativity with strategy.",
+      "salary": "₹4,00,000 – ₹15,00,000 per year",
+      "education": "BBA / B.Com + MBA in Marketing.",
+      "quiz": [
+        { "question": "Do you enjoy convincing people about ideas?", "answer": true },
+        { "question": "Are you creative and strategic?", "answer": true },
+        { "question": "Do you keep up with social media trends?", "answer": true }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Company Secretary",
+      "category": "Business",
+      "icon": "📋",
+      "tags": ["Law", "Detail", "Business"],
+      "description": "Company Secretaries ensure companies follow legal and regulatory rules. They work closely with boards and directors.",
+      "salary": "₹4,00,000 – ₹12,00,000 per year",
+      "education": "CS Foundation → Executive → Professional. Usually paired with B.Com or LLB.",
+      "quiz": [
+        { "question": "Are you interested in business law?", "answer": true },
+        { "question": "Do you pay attention to rules and regulations?", "answer": true },
+        { "question": "Are you organised and detail-oriented?", "answer": true }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Stock Broker",
+      "category": "Business",
+      "icon": "📉",
+      "tags": ["Money", "Risk", "Math"],
+      "description": "Stock brokers buy and sell shares for clients. It's a fast-paced career for those who understand markets.",
+      "salary": "₹3,00,000 – ₹20,00,000+ per year",
+      "education": "Bachelor's in Finance/Commerce. NISM certification required.",
+      "quiz": [
+        { "question": "Are you interested in the stock market?", "answer": true },
+        { "question": "Can you handle financial risk?", "answer": true },
+        { "question": "Do you stay calm under pressure?", "answer": true }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Lawyer",
+      "category": "Creative",
+      "icon": "⚖️",
+      "tags": ["Law", "Communication", "Reading"],
+      "description": "Lawyers represent clients in legal matters, argue cases, and advise on rights and obligations.",
+      "salary": "₹3,00,000 – ₹20,00,000+ per year",
+      "education": "BA LLB (5 years) or LLB (3 years). CLAT for top law schools.",
+      "quiz": [
+        { "question": "Do you enjoy debating and arguing?", "answer": true },
+        { "question": "Are you good at reading and interpreting rules?", "answer": true },
+        { "question": "Do you want to fight for justice?", "answer": true }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Journalist",
+      "category": "Creative",
+      "icon": "📰",
+      "tags": ["Writing", "Communication", "Curiosity"],
+      "description": "Journalists report news, investigate stories, and inform the public. They work in newspapers, TV, and digital media.",
+      "salary": "₹2,00,000 – ₹8,00,000 per year",
+      "education": "Bachelor's in Journalism / Mass Communication.",
+      "quiz": [
+        { "question": "Are you curious about current events?", "answer": true },
+        { "question": "Do you enjoy writing and storytelling?", "answer": true },
+        { "question": "Can you work under deadlines?", "answer": true }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Psychologist",
+      "category": "Social",
+      "icon": "🧠",
+      "tags": ["Listening", "Helping", "Science"],
+      "description": "Psychologists study human behaviour and help people with mental health, relationships, and personal growth.",
+      "salary": "₹3,00,000 – ₹10,00,000 per year",
+      "education": "BA/B.Sc Psychology + MA/M.Sc + M.Phil or PhD for clinical practice.",
+      "quiz": [
+        { "question": "Are you a good listener?", "answer": true },
+        { "question": "Do you find human behaviour fascinating?", "answer": true },
+        { "question": "Can you keep sensitive information confidential?", "answer": true }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Civil Servant (IAS/IPS)",
+      "category": "Social",
+      "icon": "🏛️",
+      "tags": ["Leadership", "Society", "Reading"],
+      "description": "IAS and IPS officers run government administration and police. It's one of India's most prestigious careers.",
+      "salary": "₹7,00,000 – ₹15,00,000 per year + benefits",
+      "education": "Any bachelor's degree + UPSC Civil Services Exam.",
+      "quiz": [
+        { "question": "Do you want to serve the country?", "answer": true },
+        { "question": "Are you good at reading and analysis?", "answer": true },
+        { "question": "Can you lead teams and take tough decisions?", "answer": true }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Fashion Designer",
+      "category": "Creative",
+      "icon": "👗",
+      "tags": ["Creativity", "Drawing", "Trends"],
+      "description": "Fashion designers create clothing and accessories. They combine art, culture, and business to shape what people wear.",
+      "salary": "₹2,50,000 – ₹10,00,000 per year",
+      "education": "B.Des from NIFT, NID, or similar institutes.",
+      "quiz": [
+        { "question": "Do you follow fashion trends?", "answer": true },
+        { "question": "Are you creative with colours and fabrics?", "answer": true },
+        { "question": "Do you enjoy sketching and designing?", "answer": true }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Welder",
+      "category": "Trades",
+      "icon": "🔩",
+      "tags": ["Hands-on", "Safety", "Building"],
+      "description": "Welders join metal parts using heat. They work in construction, manufacturing, and shipbuilding.",
+      "salary": "₹1,50,000 – ₹5,00,000 per year",
+      "education": "ITI certificate in Welding. Skill certification boosts pay.",
+      "quiz": [
+        { "question": "Do you enjoy hands-on work?", "answer": true },
+        { "question": "Are you good at following safety rules?", "answer": true },
+        { "question": "Are you physically fit?", "answer": true }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Automobile Technician",
+      "category": "Trades",
+      "icon": "🚗",
+      "tags": ["Fixing Things", "Hands-on", "Machines"],
+      "description": "Automobile technicians repair and service cars and bikes. Demand is high with the rise of electric vehicles.",
+      "salary": "₹1,80,000 – ₹5,00,000 per year",
+      "education": "ITI in Motor Mechanic Vehicle (MMV) or diploma in Automobile Engineering.",
+      "quiz": [
+        { "question": "Do you enjoy working on vehicles?", "answer": true },
+        { "question": "Are you good at diagnosing problems?", "answer": true },
+        { "question": "Do you like tinkering with machines?", "answer": true }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Beautician",
+      "category": "Trades",
+      "icon": "💇",
+      "tags": ["Creativity", "Helping", "Hands-on"],
+      "description": "Beauticians provide skincare, hair, and makeup services. Many run their own salons or freelance.",
+      "salary": "₹1,50,000 – ₹6,00,000 per year",
+      "education": "Beauty courses from private institutes. Certification from recognized bodies helps.",
+      "quiz": [
+        { "question": "Do you enjoy making people look good?", "answer": true },
+        { "question": "Are you creative with styles and colours?", "answer": true },
+        { "question": "Do you enjoy meeting new people?", "answer": true }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "IT Support Technician",
+      "category": "Trades",
+      "icon": "🖥️",
+      "tags": ["Coding", "Fixing Things", "Communication"],
+      "description": "IT support technicians install, maintain, and fix computer systems and networks in offices and schools.",
+      "salary": "₹1,80,000 – ₹5,00,000 per year",
+      "education": "Diploma in IT or certifications like CompTIA A+, CCNA.",
+      "quiz": [
+        { "question": "Do you enjoy fixing computer problems?", "answer": true },
+        { "question": "Are you patient with non-technical users?", "answer": true },
+        { "question": "Do you like learning new software?", "answer": true }
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Carpenter",
+      "category": "Trades",
+      "icon": "🪚",
+      "tags": ["Hands-on", "Creativity", "Fixing Things"],
+      "description": "Carpenters build and repair wooden furniture, doors, and structures. Skilled carpenters can run their own workshops.",
+      "salary": "₹1,50,000 – ₹5,00,000 per year",
+      "education": "ITI in Carpentry or apprenticeship under an experienced carpenter.",
+      "quiz": [
+        { "question": "Do you enjoy working with wood?", "answer": true },
+        { "question": "Are you good with measurements?", "answer": true },
+        { "question": "Do you like creating things with your hands?", "answer": true }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@career.in",
+      "password": "admin123",
+      "role": "admin",
+      "joined": "2026-01-01"
+    },
+    {
+      "id": 2,
+      "name": "Priya Sharma",
+      "email": "priya@student.in",
+      "password": "student123",
+      "role": "student",
+      "joined": "2026-02-15",
+      "school": "Government Girls High School, Delhi",
+      "careersViewed": [1, 3, 8, 2],
+      "status": "Active",
+      "helpfulnessScore": 5
+    },
+    {
+      "id": 3,
+      "name": "Rahul Kumar",
+      "email": "rahul@student.in",
+      "password": "student123",
+      "role": "student",
+      "joined": "2026-03-10",
+      "school": "Zilla Parishad School, Maharashtra",
+      "careersViewed": [4, 10],
+      "status": "Active",
+      "helpfulnessScore": 4
+    },
+    {
+      "id": 4,
+      "name": "Anjali Devi",
+      "email": "anjali@student.in",
+      "password": "student123",
+      "role": "student",
+      "joined": "2026-04-22",
+      "school": "Municipal School, Chennai",
+      "careersViewed": [2, 5, 7],
+      "status": "Inactive",
+      "helpfulnessScore": 5
+    },
+    {
+      "id": 5,
+      "name": "Mohammed Irfan",
+      "email": "irfan@student.in",
+      "password": "student123",
+      "role": "student",
+      "joined": "2026-05-08",
+      "school": "Govt. Higher Secondary School, Hyderabad",
+      "careersViewed": [1, 8, 6],
+      "status": "Active",
+      "helpfulnessScore": 4
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "userId": 2,
+      "userName": "Priya Sharma",
+      "careerId": 1,
+      "careerName": "Software Developer",
+      "rating": 5,
+      "comment": "This career card was really helpful! I never knew coding could be for someone like me. The salary info gave me hope.",
+      "date": "2026-06-15"
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "userName": "Rahul Kumar",
+      "careerId": 4,
+      "careerName": "Electrician",
+      "rating": 4,
+      "comment": "I liked that it showed ITI as an option. Not everyone can afford college. But I wish there were more details about apprenticeship.",
+      "date": "2026-06-20"
+    },
+    {
+      "id": 3,
+      "userId": 4,
+      "userName": "Anjali Devi",
+      "careerId": 2,
+      "careerName": "Nurse",
+      "rating": 5,
+      "comment": "The mini-quiz helped me understand if nursing is right for me. I answered yes to all and felt confident!",
+      "date": "2026-07-01"
+    }
+  ],
+  "scholarships": [
+    {
+      "id": 1,
+      "name": "Central Sector Scheme of Scholarship (CSSS)",
+      "provider": "Government of India",
+      "amount": "₹10,000 – ₹20,000 per year",
+      "eligibility": "Class 12 passed with 80%+ marks. Family income below ₹8 lakh per year.",
+      "category": "Merit-based",
+      "deadline": "October 31, 2026",
+      "link": "https://scholarships.gov.in",
+      "description": "For meritorious students from economically weaker sections pursuing undergraduate courses.",
+      "icon": "🏛️"
+    },
+    {
+      "id": 2,
+      "name": "AICTE Pragati Scholarship for Girls",
+      "provider": "AICTE",
+      "amount": "₹50,000 per year",
+      "eligibility": "Girl students in first year of technical degree/diploma. Family income below ₹8 lakh.",
+      "category": "Girls only",
+      "deadline": "November 30, 2026",
+      "link": "https://scholarships.gov.in",
+      "description": "Encourages girls to pursue technical education by covering tuition, books, and other expenses.",
+      "icon": "👩‍🎓"
+    },
+    {
+      "id": 3,
+      "name": "Post Matric Scholarship for SC/ST/OBC",
+      "provider": "Ministry of Social Justice",
+      "amount": "Full tuition + maintenance allowance",
+      "eligibility": "SC/ST/OBC students pursuing post-matric education. Family income limits apply.",
+      "category": "Category-based",
+      "deadline": "Varies by state",
+      "link": "https://scholarships.gov.in",
+      "description": "Financial assistance for SC/ST/OBC students to continue education after Class 10.",
+      "icon": "📖"
+    },
+    {
+      "id": 4,
+      "name": "Saksham Scholarship for Differently-Abled",
+      "provider": "AICTE",
+      "amount": "₹50,000 per year",
+      "eligibility": "Students with 40%+ disability in technical degree/diploma. Family income below ₹8 lakh.",
+      "category": "Disability",
+      "deadline": "November 30, 2026",
+      "link": "https://scholarships.gov.in",
+      "description": "Supports differently-abled students pursuing technical education.",
+      "icon": "♿"
+    },
+    {
+      "id": 5,
+      "name": "UP Scholarship (Class 9-12)",
+      "provider": "UP Social Welfare Department",
+      "amount": "Varies by class and category",
+      "eligibility": "Students in Class 9-12 in Uttar Pradesh. General/SC/ST/OBC/Minority categories.",
+      "category": "State-based",
+      "deadline": "September 21, 2026",
+      "link": "https://scholarship.up.gov.in",
+      "description": "State scholarship for students in Uttar Pradesh from Class 9 to 12.",
+      "icon": "🏫"
+    },
+    {
+      "id": 6,
+      "name": "Reliance Foundation Scholarship",
+      "provider": "Reliance Foundation",
+      "amount": "Up to ₹2,00,000 (one-time)",
+      "eligibility": "Undergraduate students in select institutions. Merit + need-based.",
+      "category": "Private",
+      "deadline": "December 15, 2026",
+      "link": "https://www.reliancefoundation.org",
+      "description": "Private scholarship for meritorious students from low-income families.",
+      "icon": "🏢"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarships — Career Explorer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        :root {
+            --primary: #6C5CE7; --accent: #FF7675; --green: #00B894;
+            --orange: #FDCB6E; --bg: #F8F9FD; --card: #FFFFFF;
+            --text: #2D3436; --text-light: #636E72; --border: #E8ECF3;
+            --shadow: 0 4px 20px rgba(108, 92, 231, 0.08);
+        }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; }
+
+        .navbar { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 50; }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .nav-brand { font-size: 1.2rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+        .nav-link { padding: 8px 16px; border-radius: 8px; text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.88rem; }
+        .nav-link:hover { background: var(--bg); color: var(--primary); }
+        .nav-link.active { background: rgba(108, 92, 231, 0.1); color: var(--primary); }
+        .nav-user { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-light); }
+        .nav-user strong { color: var(--primary); }
+        .nav-logout { padding: 8px 14px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.82rem; }
+        .nav-login { padding: 8px 16px; background: var(--primary); color: white; border-radius: 8px; font-weight: 600; font-size: 0.85rem; text-decoration: none; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+
+        .hero {
+            background: linear-gradient(135deg, #00B894 0%, #55EFC4 100%);
+            border-radius: 20px; padding: 35px; color: white;
+            margin-bottom: 30px; position: relative; overflow: hidden;
+        }
+        .hero::after {
+            content: '🎓'; position: absolute; font-size: 8rem;
+            right: 20px; bottom: -20px; opacity: 0.15;
+        }
+        .hero h2 { font-size: 1.6rem; margin-bottom: 10px; }
+        .hero p { font-size: 0.95rem; opacity: 0.95; max-width: 600px; }
+
+        .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
+        .filter-btn {
+            padding: 10px 18px; border: 2px solid var(--border); background: white;
+            border-radius: 10px; cursor: pointer; font-size: 0.85rem;
+            font-weight: 600; color: var(--text-light); transition: all 0.2s;
+        }
+        .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .filter-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
+
+        .scholarship-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
+        .scholarship-card {
+            background: var(--card); border-radius: 16px; padding: 24px;
+            box-shadow: var(--shadow); transition: transform 0.25s, box-shadow 0.25s;
+            border-left: 4px solid var(--primary);
+        }
+        .scholarship-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(108, 92, 231, 0.15); }
+
+        .scholarship-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+        .scholarship-icon { font-size: 2rem; flex-shrink: 0; }
+        .scholarship-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+        .scholarship-provider { font-size: 0.82rem; color: var(--text-light); }
+
+        .scholarship-badge {
+            display: inline-block; font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; padding: 4px 10px;
+            border-radius: 20px; margin-bottom: 12px;
+        }
+        .badge-merit { background: rgba(108, 92, 231, 0.12); color: var(--primary); }
+        .badge-girls { background: rgba(255, 118, 117, 0.12); color: var(--accent); }
+        .badge-category { background: rgba(0, 184, 148, 0.12); color: var(--green); }
+        .badge-disability { background: rgba(253, 203, 110, 0.2); color: #E17055; }
+        .badge-state { background: rgba(116, 185, 255, 0.15); color: #0984E3; }
+        .badge-private { background: rgba(162, 155, 254, 0.15); color: #6C5CE7; }
+
+        .scholarship-info { margin-bottom: 14px; }
+        .info-row {
+            display: flex; justify-content: space-between;
+            font-size: 0.85rem; padding: 6px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: var(--text-light); font-weight: 600; }
+        .info-value { font-weight: 700; text-align: right; max-width: 60%; }
+        .info-value.amount { color: var(--green); }
+
+        .scholarship-desc { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; margin-bottom: 16px; }
+        .apply-btn {
+            display: block; width: 100%; padding: 12px;
+            background: var(--primary); color: white; text-align: center;
+            border-radius: 10px; text-decoration: none;
+            font-weight: 700; font-size: 0.9rem;
+        }
+        .apply-btn:hover { background: #5A4BD1; }
+        .deadline-warning {
+            font-size: 0.78rem; color: var(--accent); font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 25px; }
+            .hero h2 { font-size: 1.3rem; }
+            .scholarship-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">🎓 Career Explorer</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Careers</a>
+                <a href="/streams" class="nav-link">Streams</a>
+                <a href="/scholarships" class="nav-link active">Scholarships</a>
+                <a href="/reviews" class="nav-link">Reviews</a>
+                <a href="/dashboard" class="nav-link" id="adminLink" style="display:none;">Dashboard</a>
+            </div>
+            <div class="nav-user" id="navUser"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h2>Financial Aid for Your Education</h2>
+            <p>Find scholarships you're eligible for. These are government and private schemes for underprivileged and meritorious students across India.</p>
+        </div>
+
+        <div class="filters" id="filters"></div>
+        <div class="scholarship-grid" id="scholarshipGrid">
+            <p style="text-align:center; color:#999;">Loading scholarships...</p>
+        </div>
+    </div>
+
+    <script>
+        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        const navUser = document.getElementById('navUser');
+        const adminLink = document.getElementById('adminLink');
+
+        if (currentUser.id) {
+            navUser.innerHTML = `
+                <span>Hi, <strong>${currentUser.name}</strong></span>
+                <button class="nav-logout" onclick="logout()">Logout</button>
+            `;
+            if (currentUser.role === 'admin') adminLink.style.display = 'inline-block';
+        } else {
+            navUser.innerHTML = `<a href="/login" class="nav-login">Login / Register</a>`;
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = '/login';
+        }
+
+        let allScholarships = [];
+        let activeFilter = 'All';
+
+        const badgeClasses = {
+            'Merit-based': 'badge-merit',
+            'Girls only': 'badge-girls',
+            'Category-based': 'badge-category',
+            'Disability': 'badge-disability',
+            'State-based': 'badge-state',
+            'Private': 'badge-private'
+        };
+
+        async function loadScholarships() {
+            try {
+                const res = await fetch('/api/scholarships');
+                const { scholarships } = await res.json();
+                allScholarships = scholarships;
+                buildFilters();
+                renderScholarships();
+            } catch (error) {
+                document.getElementById('scholarshipGrid').innerHTML =
+                    '<p style="text-align:center; color:#999;">Error loading scholarships.</p>';
+            }
+        }
+
+        function buildFilters() {
+            const categories = ['All', ...new Set(allScholarships.map(s => s.category))];
+            document.getElementById('filters').innerHTML = categories.map(cat =>
+                `<button class="filter-btn ${cat === 'All' ? 'active' : ''}" onclick="setFilter('${cat}')">${cat}</button>`
+            ).join('');
+        }
+
+        function setFilter(cat) {
+            activeFilter = cat;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent === cat);
+            });
+            renderScholarships();
+        }
+
+        function renderScholarships() {
+            const filtered = activeFilter === 'All'
+                ? allScholarships
+                : allScholarships.filter(s => s.category === activeFilter);
+            const grid = document.getElementById('scholarshipGrid');
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="text-align:center; color:#999;">No scholarships found.</p>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(s => {
+                const badgeClass = badgeClasses[s.category] || 'badge-merit';
+                return `
+                    <div class="scholarship-card">
+                        <div class="scholarship-header">
+                            <div class="scholarship-icon">${s.icon}</div>
+                            <div>
+                                <div class="scholarship-title">${s.name}</div>
+                                <div class="scholarship-provider">by ${s.provider}</div>
+                            </div>
+                        </div>
+                        <span class="scholarship-badge ${badgeClass}">${s.category}</span>
+                        <div class="scholarship-info">
+                            <div class="info-row">
+                                <span class="info-label">Amount</span>
+                                <span class="info-value amount">${s.amount}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Deadline</span>
+                                <span class="info-value">${s.deadline}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Eligibility</span>
+                                <span class="info-value">${s.eligibility}</span>
+                            </div>
+                        </div>
+                        <p class="scholarship-desc">${s.description}</p>
+                        <p class="deadline-warning">⏰ Apply before ${s.deadline}</p>
+                        <a href="${s.link}" target="_blank" class="apply-btn">Apply on Official Portal →</a>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        loadScholarships();
+    </script>
+</body>
+</html>
